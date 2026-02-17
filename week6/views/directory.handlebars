@@ -1,0 +1,22 @@
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">First</th>
+            <th scope="col">Last</th>
+            <th scope="col">Email</th>
+            <th scope="col">Link</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each directory}}
+        <tr>
+            <th scope="row">{{this.id}}</th>
+            <td>{{this.first_name}}</td>
+            <td>{{this.last_name}}</td>
+            <td>{{this.email}}</td>
+            <td><a href="/directory/{{this.id}}">View Details</a></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>

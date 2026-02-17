@@ -1,0 +1,19 @@
+{
+  "name": "week5",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --watch server.js"
+  },
+  "keywords": [],
+  "author": "Javier Carrillo",
+  "license": "MIT",
+  "type": "commonjs",
+  "dependencies": {
+    "express": "^5.2.1",
+    "express-handlebars": "^8.0.5",
+    "node-monitor": "^0.3.11"
+  }
+}
