@@ -1,0 +1,19 @@
+<h1>{{title}}</h1>
+<div class="container">
+    {{#each destinations}}
+
+    <div class="row">
+        <div class="col-md-3">
+            <h2>{{this.name}}</h2>
+            <img src={{this.image}} class="img-thumbnail img-fluid square" alt="{{this.name}} image">
+        </div>
+        <div class="col-md-7">
+            <p>{{this.description}}</p>
+        </div>
+        <div class="col-md-2">
+            <a href="/destinations/{{this._id}}" type="button" class="btn btn-info">Details</a>
+        </div>
+    </div>
+
+    {{/each}}
+</div>
