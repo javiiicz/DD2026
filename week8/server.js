@@ -79,12 +79,8 @@ app.get("/destinations", async (req, res) => {
 
 app.get("/destinations/:id", async (req, res) => {
     let destinationId = req.params.id;
-    console.log("destinationId")
-    console.log(destinationId)
     const destination = await Destination.findById(destinationId).lean();
     const activities = await Activity.find({destination: destinationId}).lean();
-    console.log("activities")
-    console.log(activities)
     res.render("details", {title: destination.name, destination: destination, activities: activities})
 });
 
