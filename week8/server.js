@@ -42,7 +42,7 @@ app.get('/', (req, res) => {
 })
 
 app.post("/destinations", async (req, res) => {
-    console.log(req.body)
+    // console.log(req.body)
     const { page, name, description, image } = req.body
     const newDewstination = new Destination({
         page, name, description, image
@@ -55,6 +55,12 @@ app.get("/destinations", async (req, res) => {
     const destinations = await Destination.find().lean();
     // console.log(destinations);
     res.render("destinations", {destinations, title: "Destinations"})
+})
+
+app.get("/destinations/:id", async (req, res) => {
+    let destinationId = req.params.id;
+    const dest = await Destination.findById(destinationId).lean();
+    res.render("details", {title: dest.name, destination: dest})
 })
 
 app.listen(port, () => {
