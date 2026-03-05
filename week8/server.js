@@ -24,7 +24,17 @@ const destinationSchema = new mongoose.Schema({
     description: String,
     image: String
 });
+
+const activitySchema = new mongoose.Schema({
+    name: String,
+    description: String,
+    image: String,
+    cost: Number,
+    destination: { type: mongoose.Schema.Types.ObjectId, ref: "destinations" }
+})
+
 const Destination = mongoose.model("destinations", destinationSchema);
+const Activity = mongoose.model("activities", activitySchema);
 
 async function main() {
     await mongoose.connect('mongodb://127.0.0.1:27017/travelsite');
@@ -44,11 +54,21 @@ app.get('/', (req, res) => {
 app.post("/destinations", async (req, res) => {
     // console.log(req.body)
     const { page, name, description, image } = req.body
-    const newDewstination = new Destination({
+    const newDestination = new Destination({
         page, name, description, image
     })
-    await newDewstination.save();
+    await newDestination.save();
     res.send("New Destination Saved Successfully");
+})
+
+app.post("/activities", async (req, res) => {
+    // console.log(req.body)
+    const { name, description, image, cost, destination } = req.body
+    const newActivity = new Activity({
+        name, description, image, cost, destination
+    })
+    await newActivity.save();
+    res.send("New Activity Saved Successfully");
 })
 
 app.get("/destinations", async (req, res) => {
@@ -59,9 +79,14 @@ app.get("/destinations", async (req, res) => {
 
 app.get("/destinations/:id", async (req, res) => {
     let destinationId = req.params.id;
-    const dest = await Destination.findById(destinationId).lean();
-    res.render("details", {title: dest.name, destination: dest})
-})
+    console.log("destinationId")
+    console.log(destinationId)
+    const destination = await Destination.findById(destinationId).lean();
+    const activities = await Activity.find({destination: destinationId}).lean();
+    console.log("activities")
+    console.log(activities)
+    res.render("details", {title: destination.name, destination: destination, activities: activities})
+});
 
 app.listen(port, () => {
     console.log(`Example app listening on port http://localhost:${port}`)

@@ -10,4 +10,18 @@
     <div class="col col-12">
         <p>{{destination.description}}</p>
     </div>
+
+    <div class="col col-12">
+        {{#each activities}}
+        <div class="card mb-3 col col-4" style="width: 18rem;">
+            <img src={{image}} class="card-img-top img-fluid square">
+            <div class="card-body">
+                <h5 class="card-title">{{this.name}}</h5>
+                <p class="card-text">{{this.description}}</p>
+                <p>Cost: ${{this.cost}}</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+        </div>
+        {{/each}}
+    </div>
 </div>
