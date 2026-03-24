@@ -87,11 +87,21 @@ main().catch(err => console.log(err));
 app.use(express.static(path.join(__dirname, 'static')));
 app.use(express.urlencoded({ extended: true }))
 
-app.get('/', (req, res) => {
-    const homePage = Page.findOne({slug: 'home'}).lean();
-    const gallery = Gallery.findOne({name: 'home'}).populate("images").lean();
-    res.render('home', { title: "my travel site", description: homePage.description, galleryImages: gallery.images})
-})
+
+app.get("/", async (req, res) => {
+  const homePage = await Page.findOne({ slug: "home" }).lean();
+  const gallery = await Gallery.findOne({ name: "home" })
+    .populate("images")
+    .lean();
+
+  const destinations = await Destination.find().lean();
+  res.render("home", {
+    title: homePage.name,
+    description: homePage.description,
+    galleryImages: gallery.images,
+    destinations: destinations,
+  });
+});
 
 app.post("/destinations", async (req, res) => {
     // console.log(req.body)

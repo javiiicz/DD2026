@@ -6,8 +6,8 @@
     object-fit: cover;
 
 }
-.wide-screen {
-    aspect-ratio: 16 / 9;
+.widescreen {
+    aspect-ratio: 16 / 6;
     width: 100%;
     object-fit: cover;
 }
