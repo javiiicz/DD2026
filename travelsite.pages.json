@@ -1,0 +1,16 @@
+[{
+  "_id": {
+    "$oid": "69bc1ca30994bad143bdf1d7"
+  },
+  "slug": "home",
+  "name": "Welcome Home",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69bc1cf40994bad143bdf1d9"
+  },
+  "slug": "about-us",
+  "name": "About Us",
+  "__v": 0
+}]

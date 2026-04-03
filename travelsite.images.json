@@ -1,0 +1,33 @@
+[{
+  "_id": {
+    "$oid": "69bc1ea00994bad143bdf1df"
+  },
+  "url": "/images/homepage1.jpg",
+  "caption": "A person walking to the airport with a bakcpack and a suitcase.",
+  "gallery": {
+    "$oid": "69bc1dbd0994bad143bdf1db"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69bc1ea80994bad143bdf1e1"
+  },
+  "url": "/images/homepage2.jpg",
+  "caption": "The inside of a plane.",
+  "gallery": {
+    "$oid": "69bc1dbd0994bad143bdf1db"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69bc1eac0994bad143bdf1e3"
+  },
+  "url": "/images/homepage3.jpg",
+  "caption": "A toy airplane on top of a map of the world.",
+  "gallery": {
+    "$oid": "69bc1dbd0994bad143bdf1db"
+  },
+  "__v": 0
+}]

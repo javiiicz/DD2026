@@ -1,0 +1,30 @@
+[{
+  "_id": {
+    "$oid": "69a07fa46da642a07d68990b"
+  },
+  "page": "miami",
+  "name": "Miami",
+  "description": "Miami is where tropical bliss meets high-octane urban energy. Known for its iconic Art Deco architecture and the turquoise waters of South Beach, this city is a sensory explosion. Beyond the sand, you can explore the colorful murals of Wynwood, experience the rhythmic soul of Little Havana with a fresh cafecito, or escape to the wild, untamed beauty of the Everglades. Whether you’re looking for world-class nightlife, elite shopping in the Design District, or a quiet sunset over Biscayne Bay, Miami offers a multicultural pulse that you won't find anywhere else in the world.",
+  "image": "/images/miami.png",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69a70bf94fa109d71048d087"
+  },
+  "page": "cr",
+  "name": "Costa Rica",
+  "description": "Embrace the \"Pura Vida\" lifestyle in a land where lush rainforests meet pristine Pacific and Caribbean shores. Costa Rica is a premier destination for eco-adventurers and soul-seekers alike. In the Guanacaste region, you can catch world-class waves at Tamarindo Beach or witness the majestic nesting of leatherback turtles. For those who crave the mountains, the mist-covered cloud forests of Monteverde and the soaring Arenal Volcano offer ziplining, hot springs, and unparalleled biodiversity. It is a sanctuary where you can disconnect from the digital world and reconnect with nature.",
+  "image": "/images/cr.png",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69a9add06e20ec39e6539dbd"
+  },
+  "page": "sf",
+  "name": "San Francisco",
+  "description": "Built on a foundation of fog, hills, and history, San Francisco is one of the most visually stunning cities in North America. From the orange spires of the Golden Gate Bridge to the haunting corridors of Alcatraz Island, the city is packed with legendary landmarks. Wander through the oldest Chinatown in the U.S., ride the historic cable cars over steep peaks, or enjoy the bohemian spirit of the Haight-Ashbury district. With a world-renowned food scene—ranging from the freshest sourdough at Fisherman’s Wharf to Michelin-starred dining in SoMa—San Francisco is a masterpiece of culture and coastal charm.",
+  "image": "/images/sf.png",
+  "__v": 0
+}]

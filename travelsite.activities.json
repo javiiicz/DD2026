@@ -1,0 +1,117 @@
+[{
+  "_id": {
+    "$oid": "69a9b7a170d6cc0a0b912062"
+  },
+  "name": "SF Giants Game",
+  "description": "Come to Oracle Park and watch the game in this beautiful stadium.",
+  "image": "oracle.png",
+  "cost": 30,
+  "destination": {
+    "$oid": "69a9add06e20ec39e6539dbd"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69c9a9dcf67a0d1b3b6b9637"
+  },
+  "name": "Vizcaya Museum & Gardens",
+  "description": "Step into the Gilded Age at this breathtaking Italian Renaissance-style estate. Explore ten acres of formal gardens, a historic stone barge, and a main house filled with European antiquities.",
+  "image": "vizcaya.jpg",
+  "cost": 25,
+  "destination": {
+    "$oid": "69a07fa46da642a07d68990b"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69c9aa0bf67a0d1b3b6b963b"
+  },
+  "name": "Everglades Airboat Adventure",
+  "description": "Zip across the \"River of Grass\" on a high-speed airboat. This guided tour offers a front-row seat to Florida’s unique ecosystem, featuring alligator sightings and exotic birdwatching.",
+  "image": "everglades.jpg",
+  "cost": 42,
+  "destination": {
+    "$oid": "69a07fa46da642a07d68990b"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69c9aae7f67a0d1b3b6b964b"
+  },
+  "name": "Wynwood Walls Street Art Museum",
+  "description": "Immerse yourself in the world’s premier outdoor \"museum of the streets.\" This 75,000-square-foot campus features massive, vibrant murals by elite global artists. It’s the heart of Miami’s creative soul and the perfect spot for photography and urban exploration.",
+  "image": "wynnwood.jpg",
+  "cost": 13,
+  "destination": {
+    "$oid": "69a07fa46da642a07d68990b"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69c9ac97f67a0d1b3b6b965a"
+  },
+  "name": "Manuel Antonio National Park Guided Hike",
+  "description": "Trek through one of the world's most beautiful national parks. Naturalist guides help you spot sloths, toucans, and white-faced monkeys before you end the day at a pristine white-sand beach.",
+  "image": "cr1.jpg",
+  "cost": 19,
+  "destination": {
+    "$oid": "69a70bf94fa109d71048d087"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69c9acacf67a0d1b3b6b965c"
+  },
+  "name": "Sky Adventures Arenal Ziplining",
+  "description": "Soar above the rainforest canopy on a series of high-speed cables. This adrenaline-pumping tour provides the most iconic views of the smoking Arenal Volcano and Lake Arenal below.",
+  "image": "cr2.jpg",
+  "cost": 88,
+  "destination": {
+    "$oid": "69a70bf94fa109d71048d087"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69c9acc2f67a0d1b3b6b965e"
+  },
+  "name": "Tabacón Thermal Hot Springs",
+  "description": "Relax in a natural river of volcanic-heated water. Surrounded by tropical flora, these cascading thermal pools offer a luxury spa experience powered entirely by the Earth's geothermal energy.",
+  "image": "cr3.jpg",
+  "cost": 94,
+  "destination": {
+    "$oid": "69a70bf94fa109d71048d087"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69c9ae82f67a0d1b3b6b966c"
+  },
+  "name": "Golden Gate Bay Cruise",
+  "description": "A classic 60-minute boat tour that sails directly under the Golden Gate Bridge and circles Alcatraz Island, offering the best photographic angles of the city's skyline.",
+  "image": "sf2.jpg",
+  "cost": 38,
+  "destination": {
+    "$oid": "69a9add06e20ec39e6539dbd"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69c9af34f67a0d1b3b6b9672"
+  },
+  "name": "Sunset at Ocean Beach",
+  "description": "A sprawling shoreline ideal for long walks, kite flying, and watching professional surfers tackle the heavy waves.",
+  "image": "sf3.jpg",
+  "cost": 0,
+  "destination": {
+    "$oid": "69a9add06e20ec39e6539dbd"
+  },
+  "__v": 0
+}]
