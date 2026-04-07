@@ -88,6 +88,18 @@ app.use(express.static(path.join(__dirname, 'static')));
 app.use(express.urlencoded({ extended: true }))
 
 
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE, OPTIONS');
+
+    // Handle Preflight
+    if (req.method === 'OPTIONS') {
+        return res.sendStatus(204);
+    }
+
+    next();
+});
 app.get("/", async (req, res) => {
   const homePage = await Page.findOne({ slug: "home" }).lean();
   const gallery = await Gallery.findOne({ name: "home" })
@@ -166,6 +178,11 @@ app.post("/images", async (req, res) => {
     })
     await newImage.save();
     res.send("New Image Saved Successfully");
+})
+
+app.get('/api/destinations', async (req, res) => {
+    const destinations = await Destination.find().lean();
+    res.json(destinations)
 })
 
 
