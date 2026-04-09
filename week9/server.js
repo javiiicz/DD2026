@@ -4,7 +4,7 @@
 
 const express = require('express')
 const app = express()
-const port = 3000
+const port = 3001
 
 const hbs = require('express-handlebars')
 
@@ -77,10 +77,7 @@ const Gallery = mongoose.model("galleries", gallerySchema);
 const Image = mongoose.model("images", imgSchema);
 
 async function main() {
-    await mongoose.connect('mongodb://127.0.0.1:27017/travelsite');
-
-    // use `await mongoose.connect('mongodb://user:password@127.0.0.1:27017/test');` if your database has auth enabled
-}
+    await mongoose.connect('mongodb://127.0.0.1:27017/travelsite');}
 main().catch(err => console.log(err));
 
 
@@ -92,14 +89,13 @@ app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
     res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE, OPTIONS');
-
     // Handle Preflight
     if (req.method === 'OPTIONS') {
         return res.sendStatus(204);
     }
-
     next();
 });
+
 app.get("/", async (req, res) => {
   const homePage = await Page.findOne({ slug: "home" }).lean();
   const gallery = await Gallery.findOne({ name: "home" })
