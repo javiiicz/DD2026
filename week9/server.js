@@ -83,7 +83,7 @@ main().catch(err => console.log(err));
 
 app.use(express.static(path.join(__dirname, 'static')));
 app.use(express.urlencoded({ extended: true }))
-
+app.use(express.json());
 
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
@@ -181,6 +181,15 @@ app.get('/api/destinations', async (req, res) => {
     res.json(destinations)
 })
 
+app.post("/api/destinations", async (req, res) => {
+    console.log(req.body)
+    const { page, name, description, image } = req.body
+    const newDestination = new Destination({
+        page, name, description, image
+    })
+    await newDestination.save();
+    res.send("New Destination Saved Successfully");
+})
 
 app.listen(port, () => {
     console.log(`Example app listening on port http://localhost:${port}`)
