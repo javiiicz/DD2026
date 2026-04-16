@@ -6,7 +6,7 @@ export default function NewDestinationPage() {
         name: "",
         page: "",
         description: "",
-        image: ""
+        image: null as File | null
     })
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null)
@@ -20,12 +20,19 @@ export default function NewDestinationPage() {
         e.preventDefault();
         setLoading(true);
         setError(null);
+        
+        const body = new FormData();
+        body.append("name", formData.name);
+        body.append("page", formData.page);
+        body.append("description", formData.description);
+        if (formData.image) {
+            body.append("image", formData.image);
+        }
         console.log("Form Submitted", formData)
         try {
             const response = await fetch("http://localhost:3001/api/destinations", {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(formData)
+                body
             });
             if (!response.ok) {
                 throw new Error("Failed to add destination");
@@ -34,6 +41,12 @@ export default function NewDestinationPage() {
             setError((err as Error).message)
         } finally {
             setLoading(false)
+        }
+    }
+
+    const handleFileChange = (e: any) => {
+        if (e.target.files && e.target.files[0]) {
+            setFormData(prev => ({ ...prev, image: e.target.files[0]}));
         }
     }
 
@@ -56,15 +69,15 @@ export default function NewDestinationPage() {
                     />
                 </div>
                 <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+                    <label htmlFor="image" className="block text-sm font-medium text-gray-700">
                         Image
                     </label>
                     <input
-                        type="text"
+                        type="file"
                         id="image"
                         name="image"
-                        value={formData.image}
-                        onChange={handleChange}
+                        accept="image/*"
+                        onChange={handleFileChange}
                         required
                         className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
                     />
