@@ -37,8 +37,8 @@ export default function DestinationPage() {
                         <td className="border border-slate-300 p-2">{destination.name}</td>
                         <td className="border border-slate-300 p-2">{destination.description}</td>
                         <td className="border border-slate-300 p-2">
-                            <button className="bg-blue-500 text-white px-2 py-1 rounded mr-2">Edit</button>
-                            <button className="bg-red-500 text-white px-2 py-1 rounded">Delete</button>
+                            <a className="bg-blue-500 text-white px-2 py-1 rounded mr-2" href={`destinations/edit?id=${destination._id}`}>Edit</a>
+                            <a className="bg-red-500 text-white px-2 py-1 rounded">Delete</a>
                         </td>
                     </tr>
                 ))}

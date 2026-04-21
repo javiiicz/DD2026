@@ -153,7 +153,6 @@ app.get("/destinations", async (req, res) => {
 app.get("/destinations/:id", async (req, res) => {
     let destinationId = req.params.id;
     const destination = await Destination.findById(destinationId).populate('activities').lean();
-    //const activities = await Activity.find({ destination: destinationId }).lean();
 
     res.render("details", {
         title: destination.name,
@@ -204,6 +203,12 @@ app.post("/api/destinations", upload.single("image"), async (req, res) => {
     await newDestination.save();
     res.send("New Destination Saved Successfully");
 })
+
+app.get("/api/destinations/:id", async (req, res) => {
+    let destinationId = req.params.id;
+    const destination = await Destination.findById(destinationId).populate('activities').lean();
+    res.json(destination)
+});
 
 app.listen(port, () => {
     console.log(`Example app listening on port http://localhost:${port}`)
