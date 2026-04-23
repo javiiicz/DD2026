@@ -1,16 +1,9 @@
 "use client";
-import { redirect, useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useState, useEffect } from "react";
 
-interface Destination {
-    _id: string;
-    name: string;
-    description: string;
-    image: string;
-    page: string;
-} 
-
 export default function EditDestinationPage() {
+    const r = useRouter()
     const [formData, setFormData] = useState({
         name: "",
         page: "",
@@ -19,29 +12,31 @@ export default function EditDestinationPage() {
     });
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
-    const router = useSearchParams();
-    const [destination, setDestination] = useState<Destination | null>(null);
+    const searchParams = useSearchParams();
 
     useEffect(() => {
         const fetchDestination = async () => {
-            const response = await fetch(`http://localhost:3001/api/destinations/${router.get('id')}`)
+            const response = await fetch(`http://localhost:3001/api/destinations/${searchParams.get('id')}`)
             const data = await response.json();
-            setDestination(data);
             console.log(data);
+            setFormData(data);
         }
         fetchDestination();
     }, [])
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        const { name, value } = e.target;
-        setFormData(prev => ({ ...prev, [name]: value }));
+        setFormData({
+            ...formData,
+            [e.target.name]: e.target.value
+        });
+        console.log(formData);
     };
 
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
         e.preventDefault();
         setLoading(true);
         setError(null);
-        
+        console.log("Form submitted:", formData);
         const body = new FormData();
         body.append("name", formData.name);
         body.append("page", formData.page);
@@ -49,36 +44,36 @@ export default function EditDestinationPage() {
         if (formData.image) {
             body.append("image", formData.image);
         }
-        
         try {
-            const response = await fetch("http://localhost:3001/api/destinations", {
-                method: "POST",
-                body
+            const response = await fetch("http://localhost:3001/api/destinations/" + searchParams.get('id'), {
+                method: "PUT",
+                body: body
             });
             if (!response.ok) {
-                throw new Error("Failed to add destination");
+                throw new Error("Failed to update destination");
+            } else {
+                r.push('/destinations');
             }
         } catch (err) {
             setError((err as Error).message);
         } finally {
             setLoading(false);
-            redirect('/destinations');
         }
     }
 
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files && e.target.files[0]) {
-            setFormData(prev => ({ ...prev, image: e.target.files![0]}));
+            setFormData(prev => ({ ...prev, image: e.target.files![0] }));
         }
     }
-    if (destination) {
-            
+    if (formData) {
+
         return (
             <div className="min-h-screen bg-gray-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
                 <div className="max-w-lg w-full bg-white p-8 rounded-xl shadow-lg border border-gray-100">
                     <div className="mb-8 text-center">
                         <h1 className="text-3xl font-extrabold text-gray-900 tracking-tight">
-                            Edit Destination: {destination.name}
+                            Edit Destination: {formData.name}
                         </h1>
                         <p className="mt-2 text-sm text-gray-500">
                             Fill in the details below to create a new travel spot.
@@ -100,7 +95,7 @@ export default function EditDestinationPage() {
                                 type="text"
                                 id="name"
                                 name="name"
-                                value={destination.name}
+                                value={formData.name}
                                 onChange={handleChange}
                                 required
                                 className="block w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg text-gray-900 text-sm transition-all focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 focus:bg-white outline-none"
@@ -131,7 +126,7 @@ export default function EditDestinationPage() {
                                 type="text"
                                 id="page"
                                 name="page"
-                                value={destination.page}
+                                value={formData.page}
                                 onChange={handleChange}
                                 required
                                 className="block w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg text-gray-900 text-sm transition-all focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 focus:bg-white outline-none"
@@ -146,7 +141,7 @@ export default function EditDestinationPage() {
                             <textarea
                                 id="description"
                                 name="description"
-                                value={destination.description}
+                                value={formData.description}
                                 onChange={handleChange}
                                 required
                                 rows={4}

@@ -96,7 +96,7 @@ const storage = multer.diskStorage({
         cb(null, Date.now() + "-" + file.originalname)
     }
 })
-const upload = multer({storage: storage});
+const upload = multer({ storage: storage });
 
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
@@ -198,11 +198,35 @@ app.post("/api/destinations", upload.single("image"), async (req, res) => {
     const { page, name, description } = req.body
     const image = req.file
     const newDestination = new Destination({
-        page, name, description, image: image.filename ? `images/${image.filename}` : `images/default.jpg`
+        page,
+        name, 
+        description, 
+        image: image ? `images/${image.filename}` : `images/default.jpg`
     })
     await newDestination.save();
     res.send("New Destination Saved Successfully");
 })
+
+app.put("/api/destinations/:id", upload.single("image"), async (req, res) => {
+    console.log(req.body)
+    const { id } = req.params;
+    const { page, name, description } = req.body;
+    const image = req.file;
+
+    await Destination.findByIdAndUpdate(id, {
+        page,
+        name,
+        description,
+        image: image ? `/images/${image.filename}` : this.image,
+    });
+    res.send("Destination updated successfully");
+})
+
+app.delete("/api/destinations/:id", async (req, res) => {
+  const { id } = req.params;
+  await Destination.findByIdAndDelete(id);
+  res.send("Destination deleted successfully");
+});
 
 app.get("/api/destinations/:id", async (req, res) => {
     let destinationId = req.params.id;

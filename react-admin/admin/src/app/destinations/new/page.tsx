@@ -1,8 +1,9 @@
 "use client";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export default function NewDestinationPage() {
+    const r = useRouter()
     const [formData, setFormData] = useState({
         name: "",
         page: "",
@@ -21,7 +22,7 @@ export default function NewDestinationPage() {
         e.preventDefault();
         setLoading(true);
         setError(null);
-        
+
         const body = new FormData();
         body.append("name", formData.name);
         body.append("page", formData.page);
@@ -29,7 +30,7 @@ export default function NewDestinationPage() {
         if (formData.image) {
             body.append("image", formData.image);
         }
-        
+
         try {
             const response = await fetch("http://localhost:3001/api/destinations", {
                 method: "POST",
@@ -42,13 +43,13 @@ export default function NewDestinationPage() {
             setError((err as Error).message);
         } finally {
             setLoading(false);
-            redirect('/destinations');
+            r.push('/destinations');
         }
     }
 
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files && e.target.files[0]) {
-            setFormData(prev => ({ ...prev, image: e.target.files![0]}));
+            setFormData(prev => ({ ...prev, image: e.target.files![0] }));
         }
     }
 
